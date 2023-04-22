@@ -1,0 +1,42 @@
+<p-toast></p-toast>
+<div class="header flex justify-content-between p-1 align-items-center">
+  <div class="flex">
+    <i
+      (click)="back()"
+      class="pi pi-chevron-left mr-1 cursor-pointer"
+      style="font-size: 1.3rem"
+    ></i>
+    <h2 style="margin-top: -3.8px">Диеталық тағамдар</h2>
+  </div>
+  <div>
+    <i
+      class="pi pi-shopping-cart p-text-secondary"
+      pBadge
+      (click)="basket()"
+      style="font-size: 1.5rem"
+      [value]="basket_length"
+      severity="danger"
+    ></i>
+  </div>
+</div>
+<ng-container>
+  <div class="panel p-1" *ngFor="let meal of diet_meals">
+    <div (click)="hot_meals_details(meal.id)" class="hot-meal-image">
+      <img [src]="meal.image" alt="" />
+    </div>
+    <div class="flex justify-content-between">
+      <div (click)="hot_meals_details(meal.id)">
+        <p class="text-align-center text">{{ meal.title }}</p>
+        <p class="text-align-center text">{{ meal.amount }} Тг</p>
+      </div>
+      <button
+        pButton
+        pRipple
+        [disabled]="meal.disabled"
+        (click)="addToLocalStorage(meal)"
+        icon="pi pi-cart-plus"
+        class="p-button-rounded p-button-danger down"
+      ></button>
+    </div>
+  </div>
+</ng-container>

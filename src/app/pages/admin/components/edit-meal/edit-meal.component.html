@@ -1,0 +1,68 @@
+<ng-container class="w-8">
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="center mt-1">
+      <input
+        formControlName="title"
+        class="w-full"
+        pInputText
+        type="text"
+        placeholder="Аты"
+      />
+    </div>
+    <div class="center mt-1">
+      <input
+        formControlName="image"
+        class="w-full"
+        pInputText
+        type="text"
+        placeholder="Картинкасы"
+      />
+    </div>
+    <div class="center mt-1">
+      <input
+        formControlName="amount"
+        class="w-full"
+        pInputText
+        type="text"
+        placeholder="Бағасы"
+      />
+    </div>
+    <div class="center mt-1">
+      <input
+        formControlName="ingredients"
+        class="w-full"
+        pInputText
+        type="text"
+        placeholder="Қоспасы"
+      />
+    </div>
+    <div class="center mt-1">
+      <input
+        formControlName="about"
+        class="w-full"
+        pInputText
+        type="text"
+        placeholder="Тағам жайлы"
+      />
+    </div>
+    <div class="center mt-1">
+      <input
+        formControlName="time"
+        class="w-full"
+        pInputText
+        type="text"
+        placeholder="Пісіру уақыты"
+      />
+    </div>
+    <div class="mt-1 mb-1">
+      <button
+        pButton
+        pRipple
+        label="Өзгерту"
+        icon="pi pi-pencil"
+        [disabled]="!form.dirty"
+        class="p-button mt-1 w-full"
+      ></button>
+    </div>
+  </form>
+</ng-container>

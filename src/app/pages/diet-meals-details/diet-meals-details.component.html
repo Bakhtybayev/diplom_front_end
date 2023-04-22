@@ -1,0 +1,63 @@
+<p-toast></p-toast>
+<div class="header flex justify-content-between p-1 align-items-center">
+  <div class="flex">
+    <i
+      (click)="back()"
+      class="pi pi-chevron-left mr-1 cursor-pointer"
+      style="font-size: 1.3rem"
+    ></i>
+    <h2 style="margin-top: -3.8px">{{ hot_meal.title }}</h2>
+  </div>
+  <div>
+    <i
+      class="pi pi-shopping-cart p-text-secondary"
+      pBadge
+      (click)="basket()"
+      style="font-size: 1.5rem"
+      [value]="basket_length"
+      severity="danger"
+    ></i>
+  </div>
+</div>
+<ng-container>
+  <div class="panel p-1">
+    <div class="hot-meal-image">
+      <img [src]="hot_meal.image" alt="" />
+    </div>
+    <div class="flex justify-content-between">
+      <div>
+        <p class="text">{{ hot_meal.title }}</p>
+        <p class="text">{{ hot_meal.amount }} Тг</p>
+      </div>
+      <div class="mt-1 mr-1">
+        <button
+          pButton
+          pRipple
+          [disabled]="hot_meal.disabled"
+          (click)="addToLocalStorage(hot_meal)"
+          icon="pi pi-cart-plus"
+          class="p-button-rounded p-button-danger down"
+        ></button>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<p-tabView id="closableTabView">
+  <p-tabPanel header="Құрамы" [selected]="true">
+    <div>
+      <div>
+        *
+        <i class="about_text">({{ hot_meal.ingredients }})</i>
+      </div>
+      <div class="mt-1">
+        <span class="mr-1 meal_text">Дайындалу уақыты:</span>
+        <b class="meal_text">{{ hot_meal.time }} минут!</b>
+      </div>
+    </div>
+  </p-tabPanel>
+  <p-tabPanel header="Пайдалы ақпарат">
+    <p class="meal_text">
+      {{ hot_meal.about }}
+    </p>
+  </p-tabPanel>
+</p-tabView>

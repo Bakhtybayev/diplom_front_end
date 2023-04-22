@@ -1,0 +1,20 @@
+<ng-container>
+  <div
+    *ngFor="let meal of meals"
+    class="flex justify-content-between pt-1"
+    style="border-bottom: dashed black"
+    (click)="openMealDetails(meal.id)"
+  >
+    <p class="about_text">{{ meal.title }}</p>
+    <b class="about_text">{{ meal.amount }}тг</b>
+  </div>
+  <div class="mt-1">
+    <button
+      pButton
+      pRipple
+      (click)="hotMeals()"
+      [label]="label"
+      class="p-button w-full"
+    ></button>
+  </div>
+</ng-container>

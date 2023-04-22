@@ -1,0 +1,23 @@
+<ng-container class="w-8">
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="center mt-1">
+      <input
+        formControlName="label"
+        class="w-full"
+        pInputText
+        type="text"
+        placeholder="Аты"
+      />
+    </div>
+    <div class="mt-1 mb-1">
+      <button
+        pButton
+        pRipple
+        label="Өзгерту"
+        icon="pi pi-pencil"
+        [disabled]="!form.dirty"
+        class="p-button mt-1 w-full"
+      ></button>
+    </div>
+  </form>
+</ng-container>

@@ -1,0 +1,32 @@
+<ng-container class="w-8">
+  <form *ngIf="form" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="center mt-1 mb-1">
+      <input
+        formControlName="title"
+        class="w-full"
+        pInputText
+        type="text"
+        placeholder="Почта енгізіңіз"
+      />
+    </div>
+    <div class="center mt-1 mb-1 w-full">
+      <p-password
+        [toggleMask]="true"
+        formControlName="password"
+        [feedback]="false"
+        placeholder="Пароль енгізіңіз"
+        class="w-full"
+      ></p-password>
+    </div>
+    <div class="mt-1 mb-1">
+      <button
+        pButton
+        pRipple
+        label="Құру"
+        icon="pi pi-plus"
+        [disabled]="form.invalid"
+        class="p-button p-button-danger mt-1 w-full"
+      ></button>
+    </div>
+  </form>
+</ng-container>

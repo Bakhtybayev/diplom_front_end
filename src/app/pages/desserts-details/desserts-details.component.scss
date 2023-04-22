@@ -1,0 +1,25 @@
+:host {
+  .hot-meal-image {
+    width: 380px;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .text {
+    font-size: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(8, 8, 8);
+  }
+
+  .about_text {
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .meal_text {
+    font-size: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+}

@@ -1,0 +1,101 @@
+<p-toast></p-toast>
+<div class="header flex justify-content-between p-1 align-items-center">
+  <div class="flex">
+    <i
+      (click)="back()"
+      class="pi pi-chevron-left mr-1 cursor-pointer"
+      style="font-size: 1.3rem"
+    ></i>
+    <h2 style="margin-top: -3.8px">Себет</h2>
+  </div>
+  <div>
+    <i
+      class="pi pi-shopping-cart p-text-secondary"
+      pBadge
+      style="font-size: 1.5rem"
+      [value]="basket_meals.length"
+      severity="danger"
+    ></i>
+  </div>
+</div>
+<ng-container *ngFor="let basket of basket_meals">
+  <ng-container *ngIf="basket_meals.length">
+    <div class="panel p-1 mt-3">
+      <div class="hot-meal-image">
+        <img [src]="basket.image" alt="" />
+      </div>
+      <div class="flex justify-content-between">
+        <div>
+          <p class="text">{{ basket.title }}</p>
+          <p class="text">{{ basket.amount }} Тг</p>
+          <p class="text">Саны: {{ basket.count }}</p>
+        </div>
+        <div class="mt-2 flex justify-content-around">
+          <div class="mr-1">
+            <button
+              pButton
+              pRipple
+              (click)="counter('minus', basket.id)"
+              icon="pi pi-minus"
+              class="p-button-rounded p-button-danger"
+            ></button>
+          </div>
+          <div class="mr-1">
+            <button
+              pButton
+              pRipple
+              (click)="delete_meal(basket.id)"
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-danger"
+            ></button>
+          </div>
+          <div>
+            <button
+              pButton
+              pRipple
+              (click)="counter('plus', basket.id)"
+              icon="pi pi-plus"
+              class="p-button-rounded down"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <p-tabView id="closableTabView" *ngIf="basket_meals.length">
+    <p-tabPanel header="Құрамы" [selected]="true">
+      <div>
+        <div>
+          *
+          <i class="about_text">({{ basket.ingredients }})</i>
+        </div>
+        <div class="mt-1">
+          <span class="mr-1 meal_text">Дайындалу уақыты:</span>
+          <b class="meal_text">{{ basket.time }} минут!</b>
+        </div>
+      </div>
+    </p-tabPanel>
+    <p-tabPanel header="Пайдалы ақпарат">
+      <p class="meal_text">
+        {{ basket.about }}
+      </p>
+    </p-tabPanel>
+  </p-tabView>
+</ng-container>
+
+<div class="m-1" *ngIf="basket_meals.length">
+  <button
+    pButton
+    pRipple
+    label="Себетті тазарту"
+    icon="pi pi-sync"
+    class="p-button-rounded w-full"
+  ></button>
+</div>
+
+<ng-container *ngIf="!basket_meals.length" class="panel">
+  <p class="text-align-center about_text empty">
+    Себетке салған тағамдарыңыз осы жерден пайда болады!
+  </p>
+</ng-container>

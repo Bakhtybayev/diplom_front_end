@@ -1,0 +1,163 @@
+<p-toast></p-toast>
+<div class="header">
+  <h2 class="header-title">Admin</h2>
+  <div>
+    <button
+      pButton
+      pRipple
+      (click)="showAdmin()"
+      label="Admin"
+      icon="pi pi-user"
+      class="p-button-outlined p-button-warning"
+    ></button>
+    <p-confirmDialog></p-confirmDialog>
+  </div>
+</div>
+
+<div class="flex mt-3">
+  <div class="sidebar panel">
+    <div
+      *ngFor="let item of meal_titles"
+      class="meal-block"
+      [class]="
+        active_id.id === item.id ? 'meal-block activation' : 'meal-block'
+      "
+    >
+      <p class="item" (click)="change_activation(item)">{{ item.label }}</p>
+      <div class="flex justify-content-between mt-1">
+        <i (click)="edit_title(item)" class="pi pi-pencil"></i>
+        <i (click)="delete_title(item.label, item.id)" class="pi pi-trash"></i>
+        <!-- delete dialog -->
+        <p-dialog
+          header="Ескерту"
+          [(visible)]="visible"
+          [modal]="true"
+          [style]="{ width: '50vw', height: '18vw' }"
+          [draggable]="false"
+          [resizable]="false"
+        >
+          <div class="center mt-1">
+            <p class="dyna">
+              Сіз шынымен <b>{{ title }}</b> мәзірін өшіруге дайынсызба ?
+            </p>
+          </div>
+          <div class="mt-2">
+            <button
+              pButton
+              pRipple
+              label="Өшіру"
+              (click)="imediately_delete()"
+              icon="pi pi-trash"
+              class="p-button p-button-danger mt-1 w-full"
+            ></button>
+          </div>
+        </p-dialog>
+        <!-- delete dialog -->
+      </div>
+    </div>
+    <div class="new-meal" (click)="create_title()">
+      <i class="pi pi-spin pi-plus mr-1" style="font-size: 1.5rem"></i>
+      <p class="item">Жаңа мәзір</p>
+    </div>
+  </div>
+
+  <!-- THERE IS MAIN LOGIC -->
+  <div class="main_page">
+    <div class="m-1">
+      <input
+        pInputText
+        class="w-full"
+        type="text"
+        [(ngModel)]="searchText"
+        placeholder="Іздеу"
+      />
+    </div>
+    <p-table
+      [value]="mealses | filterlist : searchText"
+      [paginator]="true"
+      [rows]="5"
+      [showCurrentPageReport]="true"
+      [tableStyle]="{ 'min-width': '68rem' }"
+      currentPageReportTemplate="{totalRecords} тағам ішінен {first} - {last} аралығындағы тағамдар"
+      [rowsPerPageOptions]="[5, 10, 20]"
+    >
+      <ng-template pTemplate="header">
+        <tr class="w-full">
+          <th>Аты</th>
+          <th>Бағасы</th>
+          <th>Дайындалу уақыты</th>
+          <th>Картинкасы</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-customer>
+        <tr>
+          <td>{{ customer.title }}</td>
+          <td>{{ customer.amount }} тг</td>
+          <td>{{ customer.time }}</td>
+          <td>
+            <img style="width: 40px !important" [src]="customer.image" alt="" />
+          </td>
+          <td>
+            <button
+              pButton
+              pRipple
+              (click)="edit_meal(customer)"
+              label="Өзгерту"
+              icon="pi pi-pencil"
+              class="p-button down"
+            ></button>
+          </td>
+          <td>
+            <!-- DELETE --------------------- DELETE -->
+            <button
+              pButton
+              pRipple
+              (click)="delete_meal(customer.title, customer.id)"
+              label="Өшіру"
+              icon="pi pi-trash"
+              class="p-button-danger"
+            ></button>
+            <p-dialog
+              header="Ескерту"
+              [(visible)]="meal_visible"
+              [modal]="true"
+              [style]="{ width: '50vw', height: '20vw' }"
+              [draggable]="false"
+              [resizable]="false"
+            >
+              <div class="center mt-1">
+                <p class="dyna">
+                  Сіз шынымен <b>{{ meal_title }}</b> тағамын өшіруге дайынсызба
+                  ?
+                </p>
+              </div>
+              <div class="mt-2">
+                <button
+                  pButton
+                  pRipple
+                  label="Өшіру"
+                  (click)="immedetily_delete_meal()"
+                  icon="pi pi-trash"
+                  class="p-button p-button-danger mt-1 w-full"
+                ></button>
+              </div>
+            </p-dialog>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="paginatorleft">
+        <button
+          pButton
+          pRipple
+          label="Жаңа тағам"
+          (click)="create_meal()"
+          icon="pi pi-plus"
+          class="p-button-text mt-1 w-full"
+        ></button>
+      </ng-template>
+      <ng-template pTemplate="paginatorright"> </ng-template>
+    </p-table>
+  </div>
+</div>

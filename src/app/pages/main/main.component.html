@@ -1,0 +1,76 @@
+<p-toast></p-toast>
+<ng-container>
+  <div class="header flex justify-content-between p-1 align-items-center">
+    <h2 class="dyna">Star Food Restaurant</h2>
+    <div>
+      <i
+        class="pi pi-shopping-cart p-text-secondary"
+        pBadge
+        (click)="basket()"
+        style="font-size: 1.5rem"
+        [value]="basket_length"
+        severity="danger"
+      ></i>
+    </div>
+  </div>
+</ng-container>
+<ng-container>
+  <div class="panel pr-1 pl-1 pb-1 mt-4">
+    <div>
+      <h2 class="text-align-center discount">Рамазан мүбәрәк!</h2>
+      <div class="discount-meal">
+        <img
+          class=""
+          src="https://mirkazanov.com/wp-content/uploads/2021/07/1570449999_23-2048x1365.jpg"
+          alt=""
+        />
+      </div>
+      <p-accordion class="w-full">
+        <!-- Discount -->
+        <p-accordionTab [selected]="true">
+          <ng-template pTemplate="header">
+            <div class="flex align-items-center">
+              <i class="pi pi-wallet mr-2" style="font-size: 1.3rem"></i>
+              <span class="vertical-align-middle">Star Food - ұсынады!</span>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="content">
+            <div class="m-0">
+              <div class="meals">
+                1] <i>Үш адамға арналған</i> - <b>Палау</b>
+              </div>
+              <div class="meals">
+                <div>2] <i>Үш адамға арналған</i> - <b>Дисерт</b></div>
+                <i>(Шоколадты-1, Крем қосылған-2)</i>
+              </div>
+              <div class="meals">
+                3] <i>Үш адамға арналған</i> - <b>Сорпа</b
+                ><i>(Сүт сорпасы-1, Ет сорпасы-2)</i>
+              </div>
+            </div>
+          </ng-template>
+        </p-accordionTab>
+        <!-- Meals -->
+        <p-accordionTab>
+          <ng-template pTemplate="header">
+            <div class="flex align-items-center">
+              <i class="pi pi-align-center mr-2" style="font-size: 1.3rem"></i>
+              <span class="vertical-align-middle">Мәзір</span>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="content">
+            <div class="mb-1" *ngFor="let item of meal_titles">
+              <button
+                pButton
+                pRipple
+                (click)="openMealsMenu(item.label)"
+                [label]="item.label"
+                class="p-button w-full"
+              ></button>
+            </div>
+          </ng-template>
+        </p-accordionTab>
+      </p-accordion>
+    </div>
+  </div>
+</ng-container>

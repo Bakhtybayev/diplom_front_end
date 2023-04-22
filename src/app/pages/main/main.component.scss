@@ -1,0 +1,27 @@
+:host {
+  .header {
+    background-color: rgb(54, 119, 240);
+  }
+  .discount {
+    padding-top: 7px;
+  }
+  .meals {
+    padding: 5px 0;
+  }
+  .discount-meal {
+    width: 380px;
+    margin-top: 9px;
+
+    img {
+      border-radius: 4px;
+      width: 100%;
+    }
+  }
+  .button {
+    margin: 10px;
+
+    .button-inner {
+      width: 400px;
+    }
+  }
+}
